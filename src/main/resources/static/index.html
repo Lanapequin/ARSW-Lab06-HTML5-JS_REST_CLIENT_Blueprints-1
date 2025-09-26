@@ -5,6 +5,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="/webjars/jquery/3.1.0/jquery.min.js"></script>
         <script src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="js/apimock.js"></script>
+        <script src="js/app.js"></script>
+        <script>
+            $(document).ready(function () {
+                $("#getBlueprints").click(function () {
+                    var author = $("#searchQuery").val();
+                    app.updateBlueprints(author);
+                });
+            });
+        </script>
         <link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
 
     </head>
@@ -15,13 +25,13 @@
                <span>Author</span>
                 <label for="searchQuery">Search:</label>
                 <input type="search" id="searchQuery">
-                <button>Get blueprints</button>
+                <button id="getBlueprints">Get blueprints</button>
             </div>
         </div>
         <div>
             <div>
-                <span>JohnConnor's blueprints</span>
-                <table>
+                <span id="authorName"></span>
+                <table id="blueprints-table">
                     <thead>
                         <tr>
                             <th>Blueprint name</th>
@@ -29,25 +39,9 @@
                             <th>Open</th>
                         </tr>
                     </thead>
-                    <tbody>
-                    <tr>
-                        <td>Skynet Defense Grid</td>
-                        <td>JohnConnor</td>
-                        <td>25</td>
-                    </tr>
-                    <tr>
-                        <td>Time Machine Core</td>
-                        <td>JohnConnor</td>
-                        <td>17</td>
-                    </tr>
-                    <tr>
-                        <td>Resistance Base Layout</td>
-                        <td>JohnConnor</td>
-                        <td>30</td>
-                    </tr>
-                    </tbody>
+                    <tbody></tbody>
                 </table>
-                <span>Total user points: 575</span>
+                <span id="totalPoints"></span>
             </div>
             <div>
                 <span>Current blueprint: house</span>

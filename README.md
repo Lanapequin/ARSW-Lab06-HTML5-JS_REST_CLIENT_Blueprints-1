@@ -182,7 +182,7 @@ El HTML se organiza con los identificadores adecuados para facilitar la manipula
 
 ## Front-End - Lógica
 
-1. Ahora, va a crear un Módulo JavaScript que, a manera de controlador, mantenga los estados y ofrezca las operaciones requeridas por la vista. Para esto tenga en cuenta el [patrón Módulo de JavaScript](https://toddmotto.com/mastering-the-module-pattern/), y cree un módulo en la ruta static/js/app.js .
+1. Ahora, va a crear un Módulo JavaScript que, a manera de controlador, mantenga los estados y ofrezca las operaciones requeridas por la vista. Para esto tenga en cuenta el [patrón Módulo de JavaScript](https://toddmotto.com/mastering-the-module-pattern/), y cree un módulo en la ruta static/js/app.js.
 
 2. Copie el módulo provisto (apimock.js) en la misma ruta del módulo antes creado. En éste agréguele más planos (con más puntos) a los autores 'quemados' en el código.
 
@@ -212,6 +212,14 @@ El HTML se organiza con los identificadores adecuados para facilitar la manipula
 6. Verifique el funcionamiento de la aplicación. Inicie el servidor, abra la aplicación HTML5/JavaScript, y rectifique que al ingresar un usuario existente, se cargue el listado del mismo.
 
 **Respuestas:**
+
+1. a
+2. a
+3. a
+4. a
+5. a
+6. a
+
 
 ## Para la próxima semana
 
