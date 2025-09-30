@@ -55,7 +55,7 @@
     ```
     src/main/resources/static
     ```
-
+   
 2. Cree, en el directorio anterior, la página index.html, sólo con lo básico: título, campo para la captura del autor, botón de 'Get blueprints', campo <div> donde se mostrará el nombre del autor seleccionado, [la tabla HTML](https://www.w3schools.com/html/html_tables.asp) donde se mostrará el listado de planos (con sólo los encabezados), y un campo <div> donde se mostrará el total de puntos de los planos del autor. Recuerde asociarle identificadores a dichos componentes para facilitar su búsqueda mediante selectores.
 
 3. En el elemento \<head\> de la página, agregue las referencia a las librerías de jQuery, Bootstrap y a la hoja de estilos de Bootstrap.
@@ -213,14 +213,43 @@ El HTML se organiza con los identificadores adecuados para facilitar la manipula
 
 **Respuestas:**
 
-1. a
-2. a
-3. a
-4. a
-5. a
-6. a
+1. Se creó el módulo app.js en static/js/. Este módulo:
+
+- Mantiene el nombre del autor seleccionado.
+- Guarda el listado de planos con nombre y número de puntos.
+- Expone una función pública para cambiar el autor actual.
+- Expone otra función para consultar los planos del autor y actualizar la tabla.
+
+    
+Se utilizó map() para transformar los planos en objetos {name, points} y reduce() para calcular el total de puntos. La tabla se actualiza dinámicamente con jQuery.
+![img1.png](img/img1.png)
+
+2. Se copio el módulo y se le agregaron más planos.
+![img2.png](img/img2.png)
+
+3. Se agregaron los dos nuevos modulos a index.html
+![img3.png](img/img3.png)
+
+4. El módulo JavaScript implementado en app.js sigue el patrón de módulo para encapsular su estado interno. Dentro de este módulo se mantienen dos variables privadas clave:
+- author: almacena el nombre del autor actualmente seleccionado. Esta variable no es accesible desde fuera del módulo, lo que garantiza que solo pueda modificarse mediante funciones públicas controladas.
+- blueprints: es una lista de objetos que representan los planos del autor. Cada objeto contiene dos propiedades: el nombre del plano y el número de puntos que lo componen. Esta lista se actualiza dinámicamente cuando se consulta al API (o al mock) y se transforma usando .map() para simplificar su estructura.
+
+Además, el módulo expone una función pública setAuthor(nombre) que permite cambiar el autor actual. Esta función es utilizada por la vista para actualizar el estado interno del módulo cuando el usuario ingresa un nuevo nombre y presiona Enter o hace clic en la lupa.
+
+![img4.png](img/img4.png)
+
+5. Dentro del módulo app.js, se implementó una función pública llamada updateBlueprints(authorName) que permite consultar y actualizar dinámicamente el listado de planos de un autor. Esta función es clave para mantener sincronizada la vista con los datos del backend (o del mock) y responde directamente a la interacción del usuario.
+   
+   La función updateBlueprints consulta los planos del autor usando apimock, transforma los datos con .map() para obtener solo el nombre y número de puntos, y genera dinámicamente las filas de la tabla con jQuery. Luego, usa .reduce() para calcular el total de puntos y actualizar el DOM. Esto permite mostrar la información de forma clara y reactiva según el autor ingresado.
+
+6. La función updateBlueprints fue asociada al evento de búsqueda del autor mediante un listener de eventos en JavaScript. Aunque inicialmente se pensó como un evento on-click de un botón, el código fue refactorizado para que también funcione al presionar Enter o al hacer clic en el ícono de la lupa, mejorando la experiencia de usuario.
+
+   La función updateBlueprints fue conectada a los eventos de búsqueda mediante jQuery. Se definió una función triggerBlueprintSearch que se ejecuta tanto al hacer clic en el ícono de la lupa como al presionar Enter en el campo de búsqueda. Esto mejora la experiencia del usuario al permitir múltiples formas de interacción para consultar los planos.
 
 
+7. Se verificó el correcto funcionamiento de la aplicación iniciando el servidor con mvn spring-boot:run y accediendo a la interfaz en http://localhost:8080/index.html. Al ingresar un nombre de autor válido (predefinido en apimock.js), se cargó correctamente el listado de planos asociados, mostrando su nombre, número de puntos y el total acumulado. Esto confirma que la integración entre el frontend y el mock del backend funciona como se espera.
+    
+    ![img5.png](img/img5.png)
 ## Para la próxima semana
 
 8. A la página, agregue un [elemento de tipo Canvas](https://www.w3schools.com/html/html5_canvas.asp), con su respectivo identificador. Haga que sus dimensiones no sean demasiado grandes para dejar espacio para los otros componentes, pero lo suficiente para poder 'dibujar' los planos.
