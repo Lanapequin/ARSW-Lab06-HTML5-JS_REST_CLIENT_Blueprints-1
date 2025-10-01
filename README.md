@@ -192,14 +192,14 @@ El HTML se organiza con los identificadores adecuados para facilitar la manipula
     <script src="js/app.js"></script>
     ```
 
-3. Haga que el módulo antes creado mantenga de forma privada:
+4. Haga que el módulo antes creado mantenga de forma privada:
     * El nombre del autor seleccionado.
     * El listado de nombre y tamaño de los planos del autor seleccionado. Es decir, una lista objetos, donde cada objeto tendrá dos propiedades: nombre de plano, y número de puntos del plano.
 
    Junto con una operación pública que permita cambiar el nombre del autor actualmente seleccionado.
 
 
-4. Agregue al módulo 'app.js' una operación pública que permita actualizar el listado de los planos, a partir del nombre de su autor (dado como parámetro). Para hacer esto, dicha operación debe invocar la operación 'getBlueprintsByAuthor' del módulo 'apimock' provisto, enviándole como _callback_ una función que:
+5. Agregue al módulo 'app.js' una operación pública que permita actualizar el listado de los planos, a partir del nombre de su autor (dado como parámetro). Para hacer esto, dicha operación debe invocar la operación 'getBlueprintsByAuthor' del módulo 'apimock' provisto, enviándole como _callback_ una función que:
 
     * Tome el listado de los planos, y le aplique una función 'map' que convierta sus elementos a objetos con sólo el nombre y el número de puntos.
 
@@ -207,9 +207,9 @@ El HTML se organiza con los identificadores adecuados para facilitar la manipula
 
     * Sobre cualquiera de los dos listados (el original, o el transformado mediante 'map'), aplique un 'reduce' que calcule el número de puntos. Con este valor, use jQuery para actualizar el campo correspondiente dentro del DOM.
 
-5. Asocie la operación antes creada (la de app.js) al evento 'on-click' del botón de consulta de la página.
+6. Asocie la operación antes creada (la de app.js) al evento 'on-click' del botón de consulta de la página.
 
-6. Verifique el funcionamiento de la aplicación. Inicie el servidor, abra la aplicación HTML5/JavaScript, y rectifique que al ingresar un usuario existente, se cargue el listado del mismo.
+7. Verifique el funcionamiento de la aplicación. Inicie el servidor, abra la aplicación HTML5/JavaScript, y rectifique que al ingresar un usuario existente, se cargue el listado del mismo.
 
 **Respuestas:**
 
@@ -222,7 +222,10 @@ El HTML se organiza con los identificadores adecuados para facilitar la manipula
 
     
 Se utilizó map() para transformar los planos en objetos {name, points} y reduce() para calcular el total de puntos. La tabla se actualiza dinámicamente con jQuery.
-![img1.png](img/img1.png)
+
+Para el diseño de la pagina web se realizo un prototipo en Figma de como se veria la pagina web una vez implementada.
+
+![img7.png](img%2Fimg7.png)
 
 2. Se copio el módulo y se le agregaron más planos.
 ![img2.png](img/img2.png)
@@ -250,6 +253,11 @@ Además, el módulo expone una función pública setAuthor(nombre) que permite c
 7. Se verificó el correcto funcionamiento de la aplicación iniciando el servidor con mvn spring-boot:run y accediendo a la interfaz en http://localhost:8080/index.html. Al ingresar un nombre de autor válido (predefinido en apimock.js), se cargó correctamente el listado de planos asociados, mostrando su nombre, número de puntos y el total acumulado. Esto confirma que la integración entre el frontend y el mock del backend funciona como se espera.
     
     ![img5.png](img/img5.png)
+
+    En el caso de que el autor no exista, se muestra la siguiente pantalla
+
+    ![img6.png](img%2Fimg6.png)
+
 ## Para la próxima semana
 
 8. A la página, agregue un [elemento de tipo Canvas](https://www.w3schools.com/html/html5_canvas.asp), con su respectivo identificador. Haga que sus dimensiones no sean demasiado grandes para dejar espacio para los otros componentes, pero lo suficiente para poder 'dibujar' los planos.
