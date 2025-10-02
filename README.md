@@ -274,3 +274,24 @@ Además, el módulo expone una función pública setAuthor(nombre) que permite c
 13. Modifique el código de app.js de manera que sea posible cambiar entre el 'apimock' y el 'apiclient' con sólo una línea de código.
 
 14. Revise la [documentación y ejemplos de los estilos de Bootstrap](https://v4-alpha.getbootstrap.com/examples/) (ya incluidos en el ejercicio), agregue los elementos necesarios a la página para que sea más vistosa, y más cercana al mock dado al inicio del enunciado.
+
+**Respuestas:**
+
+8. En el archivo index.html se reemplazó la imagen de placeholder por un elemento <canvas> con id="blueprintCanvas", dimensiones de 500x500 px y un borde visible. Esto permite disponer de un espacio donde se dibujarán los planos seleccionados.
+
+9. Se creó la función drawBlueprint(authorName, blueprintName) que, usando apimock.getBlueprintsByNameAndAuthor, obtiene el plano solicitado y:
+
+- Actualiza el nombre del plano mostrado en pantalla.
+- Limpia el contenido previo del canvas.
+- Dibuja los segmentos consecutivos del plano usando CanvasRenderingContext2D (beginPath, moveTo, lineTo, stroke).
+
+10. En la generación de filas dentro de updateBlueprints se añadió una última columna con un botón. Este botón invoca a app.drawBlueprint(author, bp.name) al hacer clic, permitiendo graficar el plano seleccionado en el canvas.
+
+11. Se validó que la aplicación permite consultar y graficar planos, con esta integración, la aplicación ahora permite:
+- Consultar los planos de un autor.
+- Mostrar la lista en la tabla.
+- Seleccionar un plano con el botón y graficarlo inmediatamente en el canvas.
+
+
+
+

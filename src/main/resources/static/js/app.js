@@ -36,7 +36,9 @@ var app = (function() {
                     `<tr>
                         <td class="body-text-wrapper">${bp.name}</td>
                         <td class="body-text-wrapper">${bp.points}</td>
-                        <td class="body-text-wrapper"><button>Select</button></td>
+                        <td class="body-text-wrapper">
+                            <button onclick="app.drawBlueprint('${author}', '${bp.name}')">Select</button>
+                        </td>
                      </tr>`
                 )
             })
@@ -50,7 +52,38 @@ var app = (function() {
         });
     }
 
+    function drawBlueprint(authorName, blueprintName) {
+        apimock.getBlueprintsByNameAndAuthor(authorName, blueprintName, function (blueprint) {
+            if (!blueprint) {
+                alert("Blueprint not found");
+                return;
+            }
+
+            // actualizar el nombre en el DOM
+            $("#currentBlueprintName").text("Current blueprint: " + blueprint.name);
+
+            // obtener el canvas y limpiar lo anterior
+            var canvas = document.getElementById("blueprintCanvas");
+            var ctx = canvas.getContext("2d");
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // dibujar líneas entre puntos
+            var points = blueprint.points;
+            if (points.length > 0) {
+                ctx.beginPath();
+                ctx.moveTo(points[0].x, points[0].y);
+                for (var i = 1; i < points.length; i++) {
+                    ctx.lineTo(points[i].x, points[i].y);
+                }
+                ctx.strokeStyle = "#000";
+                ctx.lineWidth = 2;
+                ctx.stroke();
+            }
+        });
+    }
+
     return {
-        updateBlueprints: updateBlueprints
+        updateBlueprints: updateBlueprints,
+        drawBlueprint: drawBlueprint
     };
 })();
