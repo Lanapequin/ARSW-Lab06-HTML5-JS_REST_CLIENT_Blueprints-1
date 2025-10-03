@@ -134,7 +134,7 @@ a {
     gap: 20px;
 }
 
-.left-panel img {
+.left-panel canvas {
     width: 85%;
     aspect-ratio: 1 / 1;
     object-fit: cover;

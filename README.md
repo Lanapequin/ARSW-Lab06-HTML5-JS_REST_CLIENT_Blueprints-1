@@ -292,6 +292,16 @@ Además, el módulo expone una función pública setAuthor(nombre) que permite c
 - Mostrar la lista en la tabla.
 - Seleccionar un plano con el botón y graficarlo inmediatamente en el canvas.
 
+12. Se creó el módulo apiclient con las mismas funciones que apimock, usando peticiones GET con jQuery. Las respuestas del servidor se manejan mediante callbacks, extrayendo los datos desde response.data para mantener compatibilidad con el resto de la aplicación.
 
+![](img/api-client.png)
 
+13. En app.js, se permite cambiar entre apimock y apiclient con una sola línea:
 
+```javascript
+var api = apiclient;
+```
+
+Al realizar una búsqueda en la aplicación utilizando el nombre de autora Alice, el sistema consulta el API REST real mediante el módulo apiclient. Si la autora existe en la base de datos, se reciben los planos asociados a ella, como por ejemplo "Casa" y "Parque", cada uno con sus respectivos puntos de dibujo.
+
+![](img/alice-test.png)
